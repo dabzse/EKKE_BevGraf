@@ -31,6 +31,7 @@
             this.canvas = new System.Windows.Forms.PictureBox();
             this.lbl_coordinates = new System.Windows.Forms.Label();
             this.lbl_mm = new System.Windows.Forms.Label();
+            this.btn_point = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,8 @@
             this.canvas.Size = new System.Drawing.Size(885, 666);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
+            this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Paint);
+            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             // 
             // lbl_coordinates
@@ -65,11 +68,23 @@
             this.lbl_mm.TabIndex = 2;
             this.lbl_mm.Text = "dim: mm";
             // 
+            // btn_point
+            // 
+            this.btn_point.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_point.Location = new System.Drawing.Point(891, 12);
+            this.btn_point.Name = "btn_point";
+            this.btn_point.Size = new System.Drawing.Size(105, 23);
+            this.btn_point.TabIndex = 3;
+            this.btn_point.Text = "Pontok";
+            this.btn_point.UseVisualStyleBackColor = true;
+            this.btn_point.Click += new System.EventHandler(this.btn_point_Click);
+            // 
             // BevGraf_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.btn_point);
             this.Controls.Add(this.lbl_mm);
             this.Controls.Add(this.lbl_coordinates);
             this.Controls.Add(this.canvas);
@@ -89,6 +104,7 @@
         private System.Windows.Forms.PictureBox canvas;
         private System.Windows.Forms.Label lbl_coordinates;
         private System.Windows.Forms.Label lbl_mm;
+        private System.Windows.Forms.Button btn_point;
     }
 }
 
