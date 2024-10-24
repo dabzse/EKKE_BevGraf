@@ -16,7 +16,7 @@ namespace EKKE_BevGraf
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new BevGraf_Form());
         }
     }
 }
