@@ -32,6 +32,8 @@
             this.lbl_coordinates = new System.Windows.Forms.Label();
             this.lbl_mm = new System.Windows.Forms.Label();
             this.btn_point = new System.Windows.Forms.Button();
+            this.btn_balls = new System.Windows.Forms.Button();
+            this.lbl_collision = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,11 +81,33 @@
             this.btn_point.UseVisualStyleBackColor = true;
             this.btn_point.Click += new System.EventHandler(this.btn_point_Click);
             // 
+            // btn_balls
+            // 
+            this.btn_balls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_balls.Location = new System.Drawing.Point(891, 41);
+            this.btn_balls.Name = "btn_balls";
+            this.btn_balls.Size = new System.Drawing.Size(105, 23);
+            this.btn_balls.TabIndex = 4;
+            this.btn_balls.Text = "Labdák";
+            this.btn_balls.UseVisualStyleBackColor = true;
+            this.btn_balls.Click += new System.EventHandler(this.btn_balls_Click);
+            // 
+            // lbl_collision
+            // 
+            this.lbl_collision.AutoSize = true;
+            this.lbl_collision.Location = new System.Drawing.Point(131, 684);
+            this.lbl_collision.Name = "lbl_collision";
+            this.lbl_collision.Size = new System.Drawing.Size(90, 13);
+            this.lbl_collision.TabIndex = 5;
+            this.lbl_collision.Text = "Collision counter: ";
+            // 
             // BevGraf_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.lbl_collision);
+            this.Controls.Add(this.btn_balls);
             this.Controls.Add(this.btn_point);
             this.Controls.Add(this.lbl_mm);
             this.Controls.Add(this.lbl_coordinates);
@@ -105,6 +129,8 @@
         private System.Windows.Forms.Label lbl_coordinates;
         private System.Windows.Forms.Label lbl_mm;
         private System.Windows.Forms.Button btn_point;
+        private System.Windows.Forms.Button btn_balls;
+        private System.Windows.Forms.Label lbl_collision;
     }
 }
 
