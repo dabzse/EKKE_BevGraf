@@ -25,7 +25,7 @@ namespace EKKE_BevGraf
 
         private void InitializeCollisionCounter()
         {
-            lbl_collisionCount.Text = "Collisions: 0";
+            lbl_collision.Text = "Collisions: 0";
         }
 
         private void InitializeBalls()
@@ -65,7 +65,7 @@ namespace EKKE_BevGraf
                     {
                         balls[i].HandleCollision(balls[j]);
                         collision_count++;
-                        lbl_collisionCount.Text = $"Collisions: {collision_count}";
+                        lbl_collision.Text = $"Collisions: {collision_count}";
                     }
                 }
             }
