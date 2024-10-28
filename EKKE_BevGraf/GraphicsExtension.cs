@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EKKE_BevGraf.Elements;
 
 namespace EKKE_BevGraf
 {
@@ -27,6 +28,13 @@ namespace EKKE_BevGraf
         {
             g.SetTransform();
             g.DrawEllipse(pen, point.X - 1, point.Y - 1, 2, 2);
+            g.ResetTransform();
+        }
+
+        public static void DrawLine(this Graphics g, Pen pen, Line line)
+        {
+            g.SetTransform();
+            g.DrawLine(pen, line.StartPoint.ToPointF, line.EndPoint.ToPointF);
             g.ResetTransform();
         }
     }

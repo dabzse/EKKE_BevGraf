@@ -55,6 +55,7 @@
     <Compile Include="Elements\Balls.cs" />
     <Compile Include="Elements\Point.cs" />
     <Compile Include="GraphicsExtension.cs" />
+    <Compile Include="Elements\Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VectorG.cs" />

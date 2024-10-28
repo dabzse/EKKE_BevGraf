@@ -34,6 +34,7 @@
             this.btn_point = new System.Windows.Forms.Button();
             this.btn_balls = new System.Windows.Forms.Button();
             this.lbl_collision = new System.Windows.Forms.Label();
+            this.btn_line = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,15 +98,27 @@
             this.lbl_collision.AutoSize = true;
             this.lbl_collision.Location = new System.Drawing.Point(131, 684);
             this.lbl_collision.Name = "lbl_collision";
-            this.lbl_collision.Size = new System.Drawing.Size(90, 13);
+            this.lbl_collision.Size = new System.Drawing.Size(56, 13);
             this.lbl_collision.TabIndex = 5;
-            this.lbl_collision.Text = "Collision counter: ";
+            this.lbl_collision.Text = "Collisions: ";
+            // 
+            // btn_line
+            // 
+            this.btn_line.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_line.Location = new System.Drawing.Point(891, 70);
+            this.btn_line.Name = "btn_line";
+            this.btn_line.Size = new System.Drawing.Size(105, 23);
+            this.btn_line.TabIndex = 6;
+            this.btn_line.Text = "Vonalak";
+            this.btn_line.UseVisualStyleBackColor = true;
+            this.btn_line.Click += new System.EventHandler(this.btn_line_Click);
             // 
             // BevGraf_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.btn_line);
             this.Controls.Add(this.lbl_collision);
             this.Controls.Add(this.btn_balls);
             this.Controls.Add(this.btn_point);
@@ -131,6 +144,7 @@
         private System.Windows.Forms.Button btn_point;
         private System.Windows.Forms.Button btn_balls;
         private System.Windows.Forms.Label lbl_collision;
+        private System.Windows.Forms.Button btn_line;
     }
 }
 
