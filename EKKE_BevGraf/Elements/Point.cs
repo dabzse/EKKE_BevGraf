@@ -8,15 +8,15 @@ namespace EKKE_BevGraf.Elements
 {
     public class Point
     {
-		private VectorG position;
+        private VectorG position;
         // public VectorG Position { get; set; }
         public VectorG Position
-		{
-			get { return position; }
-			set { position = value; }
-		}
+        {
+            get { return position; }
+            set { position = value; }
+        }
 
-		private float thickness;
+        private float thickness;
         // public float Thickness { get; set; }
         public float Thickness
         {

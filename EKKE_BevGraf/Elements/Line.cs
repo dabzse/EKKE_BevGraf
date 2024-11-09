@@ -8,13 +8,13 @@ namespace EKKE_BevGraf.Elements
 {
     public class Line
     {
-		private VectorG startPoint;
+        private VectorG startPoint;
         // public VectorG StartPoint { get; set; }
         public VectorG StartPoint
-		{
-			get { return startPoint; }
-			set { startPoint = value; }
-		}
+        {
+            get { return startPoint; }
+            set { startPoint = value; }
+        }
 
         private VectorG endPoint;
         // public VectorG EndPoint { get; set; }
