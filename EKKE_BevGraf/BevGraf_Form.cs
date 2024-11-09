@@ -26,7 +26,6 @@ namespace EKKE_BevGraf
             DrawIndex = 0;
             is_drawing = true;
             Cursor = Cursors.Cross;
-            ResetCollisionCounter();
         }
 
         private void btn_balls_Click(object sender, EventArgs e)
@@ -45,7 +44,6 @@ namespace EKKE_BevGraf
             DrawIndex = 2;
             is_drawing = true;
             Cursor = Cursors.Cross;
-            ResetCollisionCounter();
         }
 
         private void btn_rectangle_Click(object sender, EventArgs e)
@@ -54,7 +52,6 @@ namespace EKKE_BevGraf
             DrawIndex = 3;
             is_drawing = true;
             Cursor = Cursors.Cross;
-            ResetCollisionCounter();
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -158,24 +155,27 @@ namespace EKKE_BevGraf
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            foreach (var ball in balls)
+            if (DrawIndex == 1)
             {
-                ball.Move(canvas.Width, canvas.Height);
-            }
-
-            for (int i = 0; i < balls.Count; i++)
-            {
-                for (int j = i + 1; j < balls.Count; j++)
+                foreach (var ball in balls)
                 {
-                    if (balls[i].IsCollidingWith(balls[j]))
+                    ball.Move(canvas.Width, canvas.Height);
+                }
+
+                for (int i = 0; i < balls.Count; i++)
+                {
+                    for (int j = i + 1; j < balls.Count; j++)
                     {
-                        balls[i].HandleCollision(balls[j]);
-                        collision_counter++;
+                        if (balls[i].IsCollidingWith(balls[j]))
+                        {
+                            balls[i].HandleCollision(balls[j]);
+                            collision_counter++;
+                        }
                     }
                 }
-            }
 
-            lbl_collision.Text = $"Collisions: {collision_counter}";
+                lbl_collision.Text = $"Collisions: {collision_counter}";
+            }
             canvas.Invalidate();
         }
 
@@ -188,6 +188,15 @@ namespace EKKE_BevGraf
             DrawBalls(e.Graphics);
             DrawLines(e.Graphics, pen);
             DrawRectangles(e.Graphics, pen);
+
+            if (DrawIndex == 1)
+            {
+                lbl_collision.Visible = true;
+            }
+            else
+            {
+                lbl_collision.Visible = false;
+            }
         }
 
         private void DrawPoints(Graphics graphics)
