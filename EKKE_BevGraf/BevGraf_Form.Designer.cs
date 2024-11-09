@@ -35,6 +35,7 @@
             this.btn_balls = new System.Windows.Forms.Button();
             this.lbl_collision = new System.Windows.Forms.Label();
             this.btn_line = new System.Windows.Forms.Button();
+            this.btn_rectangle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,11 +114,23 @@
             this.btn_line.UseVisualStyleBackColor = true;
             this.btn_line.Click += new System.EventHandler(this.btn_line_Click);
             // 
+            // btn_rectangle
+            // 
+            this.btn_rectangle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_rectangle.Location = new System.Drawing.Point(891, 99);
+            this.btn_rectangle.Name = "btn_rectangle";
+            this.btn_rectangle.Size = new System.Drawing.Size(105, 23);
+            this.btn_rectangle.TabIndex = 7;
+            this.btn_rectangle.Text = "Négyszög";
+            this.btn_rectangle.UseVisualStyleBackColor = true;
+            this.btn_rectangle.Click += new System.EventHandler(this.btn_rectangle_Click);
+            // 
             // BevGraf_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.btn_rectangle);
             this.Controls.Add(this.btn_line);
             this.Controls.Add(this.lbl_collision);
             this.Controls.Add(this.btn_balls);
@@ -145,6 +158,7 @@
         private System.Windows.Forms.Button btn_balls;
         private System.Windows.Forms.Label lbl_collision;
         private System.Windows.Forms.Button btn_line;
+        private System.Windows.Forms.Button btn_rectangle;
     }
 }
 
