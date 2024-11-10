@@ -53,6 +53,7 @@
       <DependentUpon>BevGraf_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Elements\Balls.cs" />
+    <Compile Include="Elements\Chess.cs" />
     <Compile Include="Elements\Point.cs" />
     <Compile Include="Elements\Rectangle.cs" />
     <Compile Include="GraphicsExtension.cs" />

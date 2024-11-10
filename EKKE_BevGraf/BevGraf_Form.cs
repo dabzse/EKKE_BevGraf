@@ -19,6 +19,7 @@ namespace EKKE_BevGraf
         private uint ClickNum = 1;
         private Timer timer;
         private int collision_counter;
+        private Elements.Chess chess = new Elements.Chess();
 
         private void btn_point_Click(object sender, EventArgs e)
         {
@@ -75,10 +76,18 @@ namespace EKKE_BevGraf
                         case 3: // rectangles
                             AddRectangle(canvasPoint);
                             break;
+                        case 4: // chess
+                            AddChess(canvasPoint);
+                            break;
                     }
                     canvas.Refresh();
                 }
             }
+        }
+
+        private void AddChess(VectorG canvasPoint)
+        {
+            canvas.Refresh();
         }
 
         private void AddPoint(VectorG canvasPoint)
@@ -197,6 +206,11 @@ namespace EKKE_BevGraf
             {
                 lbl_collision.Visible = false;
             }
+
+            if (DrawIndex == 4)
+            {
+                chess.DrawChess(e.Graphics, canvas.Height);
+            }
         }
 
         private void DrawPoints(Graphics graphics)
@@ -295,6 +309,15 @@ namespace EKKE_BevGraf
         {
             collision_counter = 0;
             lbl_collision.Text = $"Collisions: {collision_counter}";
+        }
+
+        private void btn_chess_Click(object sender, EventArgs e)
+        {
+            ClearCanvas();
+            DrawIndex = 4;
+            is_drawing = true;
+            Cursor = Cursors.Default;
+            canvas.Refresh();
         }
     }
 }
