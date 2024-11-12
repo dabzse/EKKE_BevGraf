@@ -19,7 +19,152 @@ namespace EKKE_BevGraf
         private uint ClickNum = 1;
         private Timer timer;
         private int collision_counter;
-        private Elements.Chess chess = new Elements.Chess();
+        private Elements.Chess chess;
+        private RadioButton rb_clear;
+        private RadioButton rb_setup;
+        private RadioButton rb_legal;
+        private RadioButton rb_fishing;
+        private RadioButton rb_view_white;
+        private RadioButton rb_view_black;
+        private GroupBox groupBoxGameplay;
+        private GroupBox groupBoxView;
+
+        public BevGraf_Form()
+        {
+            InitializeComponent();
+            InitializeRadioButtons();
+            InitializeGroupBoxes();
+        }
+
+        private void ShowRadioButtons()
+        {
+            groupBoxGameplay.Visible = true;
+            groupBoxView.Visible = true;
+            groupBoxGameplay.BringToFront();
+            groupBoxView.BringToFront();
+        }
+
+        private RadioButton CreateRadioButton(string text, int x, int y)
+        {
+            return new RadioButton
+            {
+                Text = text,
+                Location = new Point(x, y),
+                Size = new Size(175, 20)
+            };
+        }
+
+        private void InitializeRadioButtons()
+        {
+            // initialize gameplay radio buttons
+            rb_clear = CreateRadioButton("CLEAR THE BOARD", 10, 20);
+            rb_setup = CreateRadioButton("SETUP THE BOARD", 10, 50);
+            rb_legal = CreateRadioButton("LEGAL MATE", 10, 80);
+            rb_fishing = CreateRadioButton("FISHING TRAP-LIKE GAME", 10, 110);
+
+            // initialize view radio buttons
+            rb_view_white = CreateRadioButton("view as WHITE", 10, 20);
+            rb_view_black = CreateRadioButton("view as BLACK", 10, 50);
+
+            // add event handlers for radio buttons
+            rb_clear.CheckedChanged += rb_clear_CheckedChanged;
+            rb_setup.CheckedChanged += rb_setup_CheckedChanged;
+            rb_legal.CheckedChanged += rb_legal_CheckedChanged;
+            rb_fishing.CheckedChanged += rb_fishing_CheckedChanged;
+            rb_view_white.CheckedChanged += Rb_View_CheckedChanged;
+            rb_view_black.CheckedChanged += Rb_View_CheckedChanged;
+        }
+
+
+        private void InitializeGroupBoxes()
+        {
+            // GroupBox for gameplay radio buttons
+            groupBoxGameplay = new GroupBox
+            {
+                Text = "--==-- Gameplay --==--",
+                Location = new Point(700, 10), // location
+                Size = new Size(175, 150) // size
+            };
+
+            // GroupBox for view radio buttons
+            groupBoxView = new GroupBox
+            {
+                Text = "--==-- View --==--",
+                Location = new Point(700, 220), // location
+                Size = new Size(175, 100) // size
+            };
+
+            // add gameplay radio buttons to the group box
+            groupBoxGameplay.Controls.Add(rb_clear);
+            groupBoxGameplay.Controls.Add(rb_setup);
+            groupBoxGameplay.Controls.Add(rb_legal);
+            groupBoxGameplay.Controls.Add(rb_fishing);
+
+            // add view radio buttons to the group box
+            groupBoxView.Controls.Add(rb_view_white);
+            groupBoxView.Controls.Add(rb_view_black);
+
+            // add group boxes to the form
+            Controls.Add(groupBoxGameplay);
+            Controls.Add(groupBoxView);
+
+            // all radio buttons are hidden initially
+            groupBoxGameplay.Visible = false;
+            groupBoxView.Visible = false;
+
+            // set default selected radio buttons
+            rb_clear.Checked = true;
+            rb_view_white.Checked = true;
+        }
+
+        private void rb_clear_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_clear.Checked)
+            {
+                // logic for clear
+            }
+        }
+
+        private void rb_setup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_setup.Checked)
+            {
+                // logic for setup
+            }
+        }
+
+        private void rb_legal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_legal.Checked)
+            {
+                // logic for legal
+            }
+        }
+
+        private void rb_fishing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_fishing.Checked)
+            {
+                // logic for fishing
+            }
+        }
+
+        private void Rb_View_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (rb != null && rb.Checked)
+            {
+                switch (rb.Text)
+                {
+                    case "view as WHITE":
+                        // logic for view white
+                        break;
+                    case "view as BLACK":
+                        // logic for view black
+                        break;
+                }
+            }
+        }
 
         private void btn_point_Click(object sender, EventArgs e)
         {
@@ -53,6 +198,23 @@ namespace EKKE_BevGraf
             DrawIndex = 3;
             is_drawing = true;
             Cursor = Cursors.Cross;
+        }
+
+        private void btn_chess_Click(object sender, EventArgs e)
+        {
+            ClearCanvas();
+            DrawIndex = 4;
+            is_drawing = true;
+            Cursor = Cursors.Default;
+
+            // initialize the chess game
+            chess = new Elements.Chess(rb_clear, rb_setup, rb_legal, rb_fishing);
+
+            // show chess-related buttons
+            ShowRadioButtons();
+
+            // refresh the canvas to draw the chessboard
+            canvas.Refresh();
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -273,6 +435,12 @@ namespace EKKE_BevGraf
             lines.Clear();
             rectangles.Clear();
             canvas.Invalidate();
+
+            // hide chess-related buttons
+            if (groupBoxGameplay != null)
+                groupBoxGameplay.Visible = false;
+            if (groupBoxView != null)
+                groupBoxView.Visible = false;
         }
 
         private float mm_px(float mm)
@@ -293,11 +461,6 @@ namespace EKKE_BevGraf
 
         private float DPI => (float)CreateGraphics().DpiX;
 
-        public BevGraf_Form()
-        {
-            InitializeComponent();
-        }
-
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
             curr_pos = PointToCanvas(new PointF(e.X, e.Y));
@@ -309,15 +472,6 @@ namespace EKKE_BevGraf
         {
             collision_counter = 0;
             lbl_collision.Text = $"Collisions: {collision_counter}";
-        }
-
-        private void btn_chess_Click(object sender, EventArgs e)
-        {
-            ClearCanvas();
-            DrawIndex = 4;
-            is_drawing = true;
-            Cursor = Cursors.Default;
-            canvas.Refresh();
         }
     }
 }

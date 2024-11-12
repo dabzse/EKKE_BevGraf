@@ -1,9 +1,53 @@
+using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace EKKE_BevGraf.Elements
 {
     public class Chess
     {
+        private RadioButton rb_clear;
+        private RadioButton rb_setup;
+        private RadioButton rb_legal;
+        private RadioButton rb_fishing;
+
+        public Chess(RadioButton rb_clear, RadioButton rb_setup, RadioButton rb_legal, RadioButton rb_fishing)
+        {
+            this.rb_clear = rb_clear;
+            this.rb_setup = rb_setup;
+            this.rb_legal = rb_legal;
+            this.rb_fishing = rb_fishing;
+
+            // Set default selection
+            rb_clear.Checked = true;
+
+            // Add event handlers
+            rb_clear.CheckedChanged += Rb_CheckedChanged;
+            rb_setup.CheckedChanged += Rb_CheckedChanged;
+            rb_legal.CheckedChanged += Rb_CheckedChanged;
+            rb_fishing.CheckedChanged += Rb_CheckedChanged;
+        }
+
+        private void Rb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_clear.Checked)
+            {
+                // Logic for clear
+            }
+            else if (rb_setup.Checked)
+            {
+                // Logic for setup
+            }
+            else if (rb_legal.Checked)
+            {
+                // Logic for legal
+            }
+            else if (rb_fishing.Checked)
+            {
+                // Logic for fishing
+            }
+        }
+
         public void DrawChess(Graphics g, int canvasHeight)
         {
             int rows = 8;
