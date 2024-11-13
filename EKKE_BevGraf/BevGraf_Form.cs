@@ -12,6 +12,7 @@ namespace EKKE_BevGraf
         private List<Elements.Ball> balls = new List<Elements.Ball>();
         private List<Elements.Line> lines = new List<Elements.Line>();
         private List<Elements.Rectangle> rectangles = new List<Elements.Rectangle>();
+        private List<Elements.Circle> circles = new List<Elements.Circle>();
         private VectorG curr_pos;
         private VectorG first_point;
         private int DrawIndex = -1;
@@ -78,6 +79,17 @@ namespace EKKE_BevGraf
                             break;
                         case 4: // chess
                             AddChess(canvasPoint);
+                            break;
+                        case 5: // circle
+                            if (ClickNum == 1)
+                            {
+                                first_point = canvasPoint;
+                                ClickNum++;
+                            }
+                            else
+                            {
+                                AddCircle(canvasPoint);
+                            }
                             break;
                     }
                     canvas.Refresh();
@@ -192,6 +204,7 @@ namespace EKKE_BevGraf
         {
             e.Graphics.SetParams(px_mm(canvas.Height));
             Pen pen = new Pen(Color.DarkBlue, 0.1f);
+            Pen extpen = new Pen(Color.Red, 0.1f); // Example pen for the new case
 
             DrawPoints(e.Graphics);
             DrawBalls(e.Graphics);
@@ -211,6 +224,36 @@ namespace EKKE_BevGraf
             {
                 chess.DrawChess(e.Graphics, canvas.Height);
             }
+
+            if (circles.Count > 0)
+            {
+                foreach (Elements.Circle c in circles)
+                {
+                    DrawCircle(e.Graphics, pen, c);
+                }
+            }
+
+            if (DrawIndex == 5 && ClickNum == 2)
+            {
+                Elements.Line line = new Elements.Line(first_point, curr_pos);
+                e.Graphics.DrawLine(extpen, mm_px(line.StartPoint.X), mm_px(line.StartPoint.Y), mm_px(line.EndPoint.X), mm_px(line.EndPoint.Y));
+                double r = first_point.DistanceFrom(curr_pos);
+                Elements.Circle circle = new Elements.Circle(first_point, r);
+                DrawCircle(e.Graphics, extpen, circle);
+            }
+        }
+
+        private void DrawCircle(Graphics graphics, Pen pen, Elements.Circle circle)
+        {
+            // Calculate the diameter of the circle in pixels
+            float diameter = mm_px((float)(circle.Radius * 2));
+
+            // Calculate the top-left corner of the bounding box of the circle in pixels
+            float x = mm_px((float)circle.Center.X) - diameter / 2;
+            float y = mm_px((float)circle.Center.Y) - diameter / 2;
+
+            // Draw the circle using the calculated position and size
+            graphics.DrawEllipse(pen, x, y, diameter, diameter);
         }
 
         private void DrawPoints(Graphics graphics)
@@ -272,6 +315,7 @@ namespace EKKE_BevGraf
             balls.Clear();
             lines.Clear();
             rectangles.Clear();
+            circles.Clear();
             canvas.Invalidate();
         }
 
@@ -318,6 +362,25 @@ namespace EKKE_BevGraf
             is_drawing = true;
             Cursor = Cursors.Default;
             canvas.Refresh();
+        }
+
+        private void btn_circle_Click(object sender, EventArgs e)
+        {
+            ClearCanvas();
+            DrawIndex = 5;
+            is_drawing = true;
+            Cursor = Cursors.Cross;
+            canvas.Refresh();
+        }
+        private void AddCircle(VectorG canvasPoint)
+        {
+            if (ClickNum == 2)
+            {
+                double r = first_point.DistanceFrom(canvasPoint);
+                Elements.Circle circle = new Elements.Circle(first_point, r);
+                circles.Add(circle);
+                ClickNum = 1;
+            }
         }
     }
 }

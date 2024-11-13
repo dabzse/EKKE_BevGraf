@@ -37,6 +37,7 @@ namespace EKKE_BevGraf
             this.btn_line = new System.Windows.Forms.Button();
             this.btn_rectangle = new System.Windows.Forms.Button();
             this.btn_chess = new System.Windows.Forms.Button();
+            this.btn_circle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,11 +140,24 @@ namespace EKKE_BevGraf
             this.btn_chess.UseVisualStyleBackColor = false;
             this.btn_chess.Click += new System.EventHandler(this.btn_chess_Click);
             // 
+            // btn_circle
+            // 
+            this.btn_circle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_circle.AutoEllipsis = true;
+            this.btn_circle.Location = new System.Drawing.Point(891, 157);
+            this.btn_circle.Name = "btn_circle";
+            this.btn_circle.Size = new System.Drawing.Size(105, 23);
+            this.btn_circle.TabIndex = 9;
+            this.btn_circle.Text = "Kör";
+            this.btn_circle.UseVisualStyleBackColor = true;
+            this.btn_circle.Click += new System.EventHandler(this.btn_circle_Click);
+            // 
             // BevGraf_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.btn_circle);
             this.Controls.Add(this.btn_chess);
             this.Controls.Add(this.btn_rectangle);
             this.Controls.Add(this.btn_line);
@@ -175,6 +189,7 @@ namespace EKKE_BevGraf
         private System.Windows.Forms.Button btn_line;
         private System.Windows.Forms.Button btn_rectangle;
         private System.Windows.Forms.Button btn_chess;
+        private System.Windows.Forms.Button btn_circle;
     }
 }
 

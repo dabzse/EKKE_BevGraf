@@ -54,6 +54,8 @@
     </Compile>
     <Compile Include="Elements\Balls.cs" />
     <Compile Include="Elements\Chess.cs" />
+    <Compile Include="Elements\Circle.cs" />
+    <Compile Include="Elements\Ellipse.cs" />
     <Compile Include="Elements\Point.cs" />
     <Compile Include="Elements\Rectangle.cs" />
     <Compile Include="GraphicsExtension.cs" />

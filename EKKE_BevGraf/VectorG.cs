@@ -52,5 +52,12 @@ namespace EKKE_BevGraf
             get { return new VectorG(0.0f, 0.0f, 0.0f); }
         }
 
+        public double DistanceFrom(VectorG v)
+        {
+            double dx = v.X - X;
+            double dy = v.Y - Y;
+            double dz = v.Z - Z;
+            return Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        }
     }
 }
