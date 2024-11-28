@@ -122,6 +122,7 @@ namespace EKKE_BevGraf
             if (rb_clear.Checked)
             {
                 // logic for clear
+                canvas.Invalidate();
             }
         }
 
@@ -130,6 +131,7 @@ namespace EKKE_BevGraf
             if (rb_setup.Checked)
             {
                 // logic for setup
+                canvas.Invalidate();
             }
         }
 
@@ -138,6 +140,7 @@ namespace EKKE_BevGraf
             if (rb_legal.Checked)
             {
                 // logic for legal
+                canvas.Invalidate();
             }
         }
 
@@ -146,6 +149,7 @@ namespace EKKE_BevGraf
             if (rb_fishing.Checked)
             {
                 // logic for fishing
+                canvas.Invalidate();
             }
         }
 
@@ -164,6 +168,7 @@ namespace EKKE_BevGraf
                         break;
                 }
             }
+            canvas.Invalidate();
         }
 
         private void btn_point_Click(object sender, EventArgs e)
@@ -475,3 +480,4 @@ namespace EKKE_BevGraf
         }
     }
 }
+
