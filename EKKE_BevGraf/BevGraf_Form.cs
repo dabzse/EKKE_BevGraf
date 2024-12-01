@@ -13,6 +13,7 @@ namespace EKKE_BevGraf
         private List<Elements.Line> lines = new List<Elements.Line>();
         private List<Elements.Rectangle> rectangles = new List<Elements.Rectangle>();
         private List<Elements.Circle> circles = new List<Elements.Circle>();
+        private List<Elements.Ellipse> ellipses = new List<Elements.Ellipse>();
         private VectorG curr_pos;
         private VectorG first_point;
         private int DrawIndex = -1;
@@ -258,6 +259,9 @@ namespace EKKE_BevGraf
                                 AddCircle(canvasPoint);
                             }
                             break;
+                        case 6: // ellipse
+                            AddEllipse(canvasPoint);
+                            break;
                     }
                     canvas.Refresh();
                 }
@@ -377,6 +381,7 @@ namespace EKKE_BevGraf
             DrawBalls(e.Graphics);
             DrawLines(e.Graphics, pen);
             DrawRectangles(e.Graphics, pen);
+            DrawEllipses(e.Graphics, pen); // Add this line to draw ellipses
 
             if (DrawIndex == 1)
             {
@@ -483,6 +488,7 @@ namespace EKKE_BevGraf
             lines.Clear();
             rectangles.Clear();
             circles.Clear();
+            ellipses.Clear();
             canvas.Invalidate();
 
             // hide chess-related buttons
@@ -542,6 +548,48 @@ namespace EKKE_BevGraf
                 ClickNum = 1;
             }
         }
+
+        private void btn_ellipse_Click(object sender, EventArgs e)
+        {
+            ClearCanvas();
+            DrawIndex = 6; // Assign a new index for ellipse drawing
+            is_drawing = true;
+            Cursor = Cursors.Cross;
+            canvas.Refresh();
+        }
+
+        private void AddEllipse(VectorG canvasPoint)
+        {
+            if (ClickNum == 1)
+            {
+                first_point = canvasPoint;
+                ClickNum++;
+            }
+            else if (ClickNum == 2)
+            {
+                double majorAxis = first_point.DistanceFrom(canvasPoint);
+                double minorAxis = majorAxis / 2; // Example minor axis, you can modify as needed
+                Elements.Ellipse ellipse = new Elements.Ellipse(first_point, majorAxis, minorAxis);
+                ellipses.Add(ellipse);
+                ClickNum = 1;
+            }
+        }
+
+        private void DrawEllipses(Graphics graphics, Pen pen)
+        {
+            if (ellipses.Count > 0)
+            {
+                foreach (var ellipse in ellipses)
+                {
+                    float majorAxis = mm_px((float)ellipse.MajorAxis);
+                    float minorAxis = mm_px((float)ellipse.MinorAxis);
+                    float x = mm_px((float)ellipse.Center.X) - majorAxis / 2;
+                    float y = mm_px((float)ellipse.Center.Y) - minorAxis / 2;
+                    graphics.DrawEllipse(pen, x, y, majorAxis, minorAxis);
+                }
+            }
+        }
+
     }
 }
 

@@ -38,6 +38,7 @@ namespace EKKE_BevGraf
             this.btn_rectangle = new System.Windows.Forms.Button();
             this.btn_chess = new System.Windows.Forms.Button();
             this.btn_circle = new System.Windows.Forms.Button();
+            this.btn_ellipse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,11 +153,24 @@ namespace EKKE_BevGraf
             this.btn_circle.UseVisualStyleBackColor = true;
             this.btn_circle.Click += new System.EventHandler(this.btn_circle_Click);
             // 
+            // btn_ellipse
+            // 
+            this.btn_ellipse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ellipse.AutoEllipsis = true;
+            this.btn_ellipse.Location = new System.Drawing.Point(891, 186);
+            this.btn_ellipse.Name = "btn_ellipse";
+            this.btn_ellipse.Size = new System.Drawing.Size(105, 23);
+            this.btn_ellipse.TabIndex = 10;
+            this.btn_ellipse.Text = "Ellipszis";
+            this.btn_ellipse.UseVisualStyleBackColor = true;
+            this.btn_ellipse.Click += new System.EventHandler(this.btn_ellipse_Click);
+            // 
             // BevGraf_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.btn_ellipse);
             this.Controls.Add(this.btn_circle);
             this.Controls.Add(this.btn_chess);
             this.Controls.Add(this.btn_rectangle);
@@ -190,6 +204,7 @@ namespace EKKE_BevGraf
         private System.Windows.Forms.Button btn_rectangle;
         private System.Windows.Forms.Button btn_chess;
         private System.Windows.Forms.Button btn_circle;
+        private System.Windows.Forms.Button btn_ellipse;
     }
 }
 
