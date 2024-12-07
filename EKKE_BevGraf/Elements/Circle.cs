@@ -8,7 +8,7 @@ namespace EKKE_BevGraf.Elements
 {
     public class Circle
     {
-		private VectorG vetor3;
+		private VectorG circle;
 		private double radius;
 		private double thickness;
 		
@@ -40,8 +40,8 @@ namespace EKKE_BevGraf.Elements
 
 		public VectorG Center
 		{
-			get { return vetor3; }
-			set { vetor3 = value; }
+			get { return circle; }
+			set { circle = value; }
 		}
 		public double Diameter
 		{
