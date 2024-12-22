@@ -567,13 +567,17 @@ namespace EKKE_BevGraf
             }
             else if (ClickNum == 2)
             {
-                double majorAxis = first_point.DistanceFrom(canvasPoint);
-                double minorAxis = majorAxis / 2; // Example minor axis, you can modify as needed
-                Elements.Ellipse ellipse = new Elements.Ellipse(first_point, majorAxis, minorAxis);
+                VectorG second_point = canvasPoint;
+                VectorG center = new VectorG((first_point.X + second_point.X) / 2, (first_point.Y + second_point.Y) / 2);
+                double majorAxis = Math.Abs(first_point.X - second_point.X);
+                double minorAxis = Math.Abs(first_point.Y - second_point.Y);
+                Elements.Ellipse ellipse = new Elements.Ellipse(center, majorAxis, minorAxis);
                 ellipses.Add(ellipse);
                 ClickNum = 1;
             }
         }
+
+
 
         private void DrawEllipses(Graphics graphics, Pen pen)
         {
@@ -581,10 +585,10 @@ namespace EKKE_BevGraf
             {
                 foreach (var ellipse in ellipses)
                 {
-                    float majorAxis = mm_px((float)ellipse.MajorAxis);
-                    float minorAxis = mm_px((float)ellipse.MinorAxis);
-                    float x = mm_px((float)ellipse.Center.X) - majorAxis / 2;
-                    float y = mm_px((float)ellipse.Center.Y) - minorAxis / 2;
+                    float majorAxis = mm_px((float)ellipse.MajorAxis) ;
+                    float minorAxis = mm_px((float)ellipse.MinorAxis) ;
+                    float x = mm_px((float)ellipse.Center.X) - majorAxis /2;
+                    float y = mm_px((float)ellipse.Center.Y) - minorAxis /2;
                     graphics.DrawEllipse(pen, x, y, majorAxis, minorAxis);
                 }
             }
