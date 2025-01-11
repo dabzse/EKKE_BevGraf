@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EKKE_BevGraf.Elements;
+using EKKE_BevGraf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace EKKE_BevGraf.Elements
 {
-    public class Circle
-    {
+	public class Circle
+	{
 		private VectorG circle;
 		private double radius;
 		private double thickness;
-		
+
 
 		public Circle()
-			: this(VectorG.Zero,1.0)
+			: this(VectorG.Zero, 1.0)
 		{
 		}
 
@@ -28,12 +30,12 @@ namespace EKKE_BevGraf.Elements
 
 		public double Thickness
 		{
-			get {return thickness;}
-			set {thickness = value;}
+			get { return thickness; }
+			set { thickness = value; }
 		}
 
-        public double Radius
-        {
+		public double Radius
+		{
 			get { return radius; }
 			set { radius = value; }
 		}
@@ -45,7 +47,7 @@ namespace EKKE_BevGraf.Elements
 		}
 		public double Diameter
 		{
-			get { return this.Radius * 2.0; }  
+			get { return this.Radius * 2.0; }
 		}
 	}
 }
