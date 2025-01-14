@@ -1,6 +1,8 @@
 * {
+    font-variant-caps: small-caps;
     margin: 0;
     padding: 0;
+    text-transform: capitalize;
 }
 
 body {
@@ -54,6 +56,7 @@ body {
 
 .card {
     border: 4px dotted #8a0303;
+    border-radius: 13px;
     box-sizing: border-box;
     font-size: 32px;
     height: 350px;
@@ -101,12 +104,10 @@ input {
     background-color: royalblue;
     cursor: pointer;
     font-size: 23px;
-    font-variant-caps: small-caps;
     height: 50px;
     left: 175px;
     position: absolute;
     text-align: center;
-    text-transform: capitalize;
     top: -100px;
     width: 100px;
 }
